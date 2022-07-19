@@ -1,8 +1,6 @@
 require './merge_sort'
 describe 'MergeSort' do
-  before(:example, :random) do
-    @test = Array.new(500) { rand(1..999) }
-  end
+  before(:example, :random) { @test = Array.new(500) { rand(1..999) } }
 
   describe '.sort' do
     context 'given an even number of unsorted numbers' do
