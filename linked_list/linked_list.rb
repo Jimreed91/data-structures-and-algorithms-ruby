@@ -28,10 +28,15 @@ class LinkedList
     tail(node.next_node)
   end
 
-  def at(index, node = @head)
-    return node if index.negative?
+  def at(index, node = @head, counter = 0)
+    return node if counter == index
 
-    at(index - 1, node.next_node)
+    at(index, node.next_node, counter + 1)
+  end
+
+  def pop()
+    at(1)
+    # tail.destroy
   end
 end
 
@@ -50,5 +55,6 @@ test_list.append(10)
 
 test_list.append(12)
 test_list.prepend(3)
+p test_list.pop
 binding.pry
 test_list.append(11)
