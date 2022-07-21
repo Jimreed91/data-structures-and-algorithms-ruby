@@ -53,7 +53,22 @@ class LinkedList
 
     contains?(value, node.next_node)
   end
+
+  def find(value, node = @head, index = 0)
+    return index if node.value == value
+    return nil if node.next_node.nil?
+
+    find(value, node.next_node, index + 1)
+  end
+
+  def to_s(node = @head, str = '')
+    str += "(#{node.value}) -> "
+    return str += 'nil' if node.next_node.nil?
+
+    to_s(node.next_node, str)
+  end
 end
+
 class Node
   attr_accessor :next_node, :value
 
