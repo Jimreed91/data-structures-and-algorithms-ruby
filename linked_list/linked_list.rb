@@ -35,10 +35,16 @@ class LinkedList
   end
 
   def pop
-   node = at(@size - 1)
-   at(size - 2).next_node = nil
-   @size -= 1
-   return node
+    if @size == 1
+      node = @head
+      @head = nil
+      return node
+    end
+
+    node = at(@size - 1)
+    at(size - 2).next_node = nil
+    @size -= 1
+    return node
   end
 end
 
