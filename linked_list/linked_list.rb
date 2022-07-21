@@ -46,8 +46,14 @@ class LinkedList
     @size -= 1
     return node
   end
-end
 
+  def contains?(value, node = @head)
+    return true if value == node.value
+    return false if node.next_node.nil?
+
+    contains?(value, node.next_node)
+  end
+end
 class Node
   attr_accessor :next_node, :value
 
