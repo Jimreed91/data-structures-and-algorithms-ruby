@@ -34,9 +34,11 @@ class LinkedList
     at(index, node.next_node, counter + 1)
   end
 
-  def pop()
-    at(1)
-    # tail.destroy
+  def pop
+   node = at(@size - 1)
+   at(size - 2).next_node = nil
+   @size -= 1
+   return node
   end
 end
 
