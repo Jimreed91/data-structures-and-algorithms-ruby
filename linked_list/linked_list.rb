@@ -1,4 +1,5 @@
-require 'pry-byebug'
+require_relative 'node'
+
 class LinkedList
   attr_accessor :head
   attr_reader :size
@@ -38,13 +39,13 @@ class LinkedList
     if @size == 1
       node = @head
       @head = nil
-      return node
+      node
     end
 
     node = at(@size - 1)
     at(size - 2).next_node = nil
     @size -= 1
-    return node
+    node
   end
 
   def contains?(value, node = @head)
@@ -69,21 +70,11 @@ class LinkedList
   end
 end
 
-class Node
-  attr_accessor :next_node, :value
-
-  def initialize(value = nil, next_node = nil)
-    @next_node = next_node
-    @value = value
-  end
-end
-
 test_list = LinkedList.new
 test_list.append(5)
 test_list.append(10)
-
 test_list.append(12)
 test_list.prepend(3)
-p test_list.pop
-binding.pry
-test_list.append(11)
+test_list.pop
+test_list.pop
+puts test_list.to_s
