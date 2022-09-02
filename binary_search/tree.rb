@@ -1,20 +1,55 @@
 require_relative 'node'
-
+require 'pry-byebug'
 class Tree
-  def initialize (arr)
+  attr_reader :root
+  def initialize(arr)
     @root = build_tree(prep_array(arr))
   end
 
-  def build_tree(arr, first = 0, last = arr.length)
-    mid = arr/2
+  def build_tree(arr, first = 0, last = arr.length - 1)
+    return nil if first > last
 
+    mid = (first + last) / 2
+    root_node = Node.new(arr[mid])
 
+    root_node.left = build_tree(arr, first, mid - 1)
+    root_node.right = build_tree(arr, mid + 1, last)
+    return root_node
   end
 
   def prep_array(arr)
-    arr.sort.uniq
+    out = arr.sort.uniq
+    out
+  end
+
+  def insert(value, node = @root)
+    return nil if node.data == value
+    value < node.data ? insert_left(value, node) : insert_right(value, node)
+  end
+
+  def insert_left(value, node)
+    node.left.nil? ?  node.left = Node.new(value) : insert(value, node.left)
+  end
+
+  def insert_right(value, node)
+    node.right.nil? ?  node.right = Node.new(value) : insert(value, node.right)
+  end
+
+  def delete
+
+  end
+
+  def find(num)
+
+
   end
 
 end
 
-[1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+# pretty_print([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+# #  pretty_print(tree.root)
+# def pretty_print(node = @root, prefix = '', is_left = true)
+#   pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
+#   puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
+#   pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
+# end
