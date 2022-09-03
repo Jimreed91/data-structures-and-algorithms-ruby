@@ -52,13 +52,15 @@ class Tree
         return node.left
       end
 
+    smallest_inorder(node.right)
 
     end
     node
   end
 
-  def smallest_inorder
-
+  def smallest_inorder(node)
+    return node if node.left.nil?
+    smallest_unorder(node.left)
   end
 
   def find(num)
