@@ -5,7 +5,7 @@ class Tree
   def initialize(arr)
     @root = build_tree(prep_array(arr))
   end
-
+  #Tree setup
   def build_tree(arr, first = 0, last = arr.length - 1)
     return nil if first > last
 
@@ -21,7 +21,9 @@ class Tree
     out = arr.sort.uniq
     out
   end
+  #Tree setup
 
+  # Node insertion
   def insert(value, node = @root)
     return nil if node.data == value
     value < node.data ? insert_left(value, node) : insert_right(value, node)
@@ -34,9 +36,20 @@ class Tree
   def insert_right(value, node)
     node.right.nil? ?  node.right = Node.new(value) : insert(value, node.right)
   end
+  # Node insertion
 
-  def delete
+  def delete(value, node = @root)
+    return nil if node.nil?
 
+    if node > value
+      delete(value, node.left)
+    elsif node < value
+      delete(value, node.right)
+    else
+      if node.left.nil? && node.right.nil?
+        node.data = nil
+      end
+    end
   end
 
   def find(num)

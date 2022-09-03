@@ -9,6 +9,6 @@ attr_accessor :data, :left, :right
   end
 
   def <=>(other)
-    value <=> other.value
+    @data <=> other
   end
 end
