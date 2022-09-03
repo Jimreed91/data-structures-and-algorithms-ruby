@@ -39,17 +39,26 @@ class Tree
   # Node insertion
 
   def delete(value, node = @root)
-    return nil if node.nil?
+    return node if node.nil?
 
     if node > value
-      delete(value, node.left)
+      node.left = delete(value, node.left)
     elsif node < value
-      delete(value, node.right)
+      node.right = delete(value, node.right)
     else
-      if node.left.nil? && node.right.nil?
-        node.data = nil
+      if node.left.nil?
+        return node.right
+      elsif node.right.nil?
+        return node.left
       end
+
+
     end
+    node
+  end
+
+  def smallest_inorder
+
   end
 
   def find(num)
@@ -60,7 +69,7 @@ class Tree
 end
 
 # pretty_print([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-# #  pretty_print(tree.root)
+# #  pretty_print(left.root)
 # def pretty_print(node = @root, prefix = '', is_left = true)
 #   pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
 #   puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
