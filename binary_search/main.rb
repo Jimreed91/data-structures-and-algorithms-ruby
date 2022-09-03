@@ -8,7 +8,7 @@ tree = Tree.new([1, 7, 4, 23, 8, 9,])
 
 p tree
 binding.pry
-tree.delete(4)
+puts tree
 tree.insert(60)
 
 p tree
